@@ -85,18 +85,25 @@ jobs:
         with:
           generator: ${{ matrix.lang }}
           openapi-file: openapi.json
-      - name: Compress folders
+      - name: Compress folder
         run: zip -r ${{ matrix.lang }}-client.zip ${{ matrix.lang }}-client
+      - name: Upload zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: cli-${{ matrix.lang }}
+          path: ${{ matrix.lang }}-client.zip
+          if-no-files-found: error
 
   release-clients:
     needs: build-client
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
       - name: Display structure of downloaded files
         run: ls -R
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           # TODO: remove this one to use tag
-          tag_name: 0.0.1-SNAPSHOT
+          tag_name: 0.0.2-SNAPSHOT
           files: ./*.zip
