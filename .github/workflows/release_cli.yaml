@@ -105,5 +105,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           # TODO: remove this one to use tag
-          tag_name: 0.0.2-SNAPSHOT
-          files: ./*.zip
+          tag_name: 0.0.3-SNAPSHOT
+          files: */*.zip
