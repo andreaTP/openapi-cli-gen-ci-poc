@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        lang:
+        lang: # from https://github.com/OpenAPITools/openapi-generator/blob/4635dda5181fd34d50643d2b9dcfcaaef64db418/docs/generators.md?plain=1#L8
         - ada
         - android
         - apex
@@ -22,7 +22,7 @@ jobs:
         - cpp-ue4
         - crystal
         - csharp
-        - csharp-dotnet2 (deprecated)
+        - csharp-dotnet2
         - csharp-netcore
         - dart
         - dart-dio
@@ -60,7 +60,7 @@ jobs:
         - rust
         - scala-akka
         - scala-gatling
-        - scala-httpclient-deprecated (deprecated)
+        - scala-httpclient-deprecated
         - scala-sttp
         - scalaz
         - swift5
@@ -71,7 +71,7 @@ jobs:
         - typescript-fetch
         - typescript-inversify
         - typescript-jquery
-        - typescript-nestjs (experimental)
+        - typescript-nestjs
         - typescript-node
         - typescript-redux-query
         - typescript-rxjs
