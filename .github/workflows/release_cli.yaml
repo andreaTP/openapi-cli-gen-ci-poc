@@ -90,6 +90,7 @@ jobs:
 
   release-clients:
     needs: build-client
+    runs-on: ubuntu-latest
     steps:
       - name: Display structure of downloaded files
         run: ls -R
