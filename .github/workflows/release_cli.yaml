@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build-native-binary:
+  build-client:
     strategy:
       fail-fast: false
       matrix:
@@ -87,5 +87,15 @@ jobs:
           openapi-file: openapi.json
       - name: Compress folders
         run: zip -r ${{ matrix.lang }}-client.zip ${{ matrix.lang }}-client
+
+
+jobs:
+  release-clients:
+    needs: build-client
+    steps:
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: *.zip
