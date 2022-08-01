@@ -1,0 +1,91 @@
+name: Release CLI binaries
+
+on:
+  push:
+
+jobs:
+  build-native-binary:
+    strategy:
+      fail-fast: false
+      matrix:
+        lang:
+        - ada
+        - android
+        - apex
+        - bash
+        - c
+        - clojure
+        - cpp-qt-client
+        - cpp-restsdk
+        - cpp-tiny
+        - cpp-tizen
+        - cpp-ue4
+        - crystal
+        - csharp
+        - csharp-dotnet2 (deprecated)
+        - csharp-netcore
+        - dart
+        - dart-dio
+        - eiffel
+        - elixir
+        - elm
+        - erlang-client
+        - erlang-proper
+        - go
+        - groovy
+        - haskell-http-client
+        - java
+        - java-micronaut-client
+        - javascript
+        - javascript-apollo
+        - javascript-closure-angular
+        - javascript-flowtyped
+        - jaxrs-cxf-client
+        - jmeter
+        - k6
+        - kotlin
+        - lua
+        - nim
+        - objc
+        - ocaml
+        - perl
+        - php
+        - php-dt
+        - powershell
+        - python
+        - python-experimental
+        - python-legacy
+        - r
+        - ruby
+        - rust
+        - scala-akka
+        - scala-gatling
+        - scala-httpclient-deprecated (deprecated)
+        - scala-sttp
+        - scalaz
+        - swift5
+        - typescript (experimental)
+        - typescript-angular
+        - typescript-aurelia
+        - typescript-axios
+        - typescript-fetch
+        - typescript-inversify
+        - typescript-jquery
+        - typescript-nestjs (experimental)
+        - typescript-node
+        - typescript-redux-query
+        - typescript-rxjs
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+      - name: Generate Angular Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: ${{ matrix.lang }}
+          openapi-file: openapi.json
+      - name: Compress folders
+        run: zip -r ${{ matrix.lang }}-client.zip ${{ matrix.lang }}-client
+      - name: Display structure of downloaded files
+        run: ls -R
