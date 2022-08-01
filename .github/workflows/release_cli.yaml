@@ -88,8 +88,6 @@ jobs:
       - name: Compress folders
         run: zip -r ${{ matrix.lang }}-client.zip ${{ matrix.lang }}-client
 
-
-jobs:
   release-clients:
     needs: build-client
     steps:
