@@ -106,4 +106,4 @@ jobs:
         with:
           # TODO: remove this one to use tag
           tag_name: 0.0.3-SNAPSHOT
-          files: */*.zip
+          files: '*/*.zip'
